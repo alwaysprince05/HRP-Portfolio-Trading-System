@@ -1,40 +1,98 @@
 # HRP Portfolio Trading System
 
-## Maintainer
-alwaysprince05
+An interactive portfolio analytics project built with Python and Streamlit using Hierarchical Risk Parity (HRP), Equal Weight, and Mean-Variance allocation methods.
 
-## What is this project?
-This project is a Python-based quantitative trading system that implements Hierarchical Risk Parity (HRP) portfolio allocation. It allows you to:
-- Download historical price data for a mix of stocks and ETFs using yfinance
-- Compute daily log returns, covariance, and correlation matrices
-- Allocate portfolio weights using HRP, Equal Weight, and Mean-Variance (Markowitz) methods
-- Backtest the strategies and compute performance metrics (Sharpe ratio, max drawdown)
-- Visualize cumulative returns, drawdowns, and the correlation heatmap
+Maintainer: `alwaysprince05`
 
-## How to fork and run
-1. **Fork this repository** using the GitHub interface (click the "Fork" button at the top right of the repo page).
-2. **Clone your fork** to your local machine:
-   ```sh
-   git clone https://github.com/YOUR_USERNAME/HRP-Portfolio-Trading-System.git
-   cd HRP-Portfolio-Trading-System
-   ```
-3. **Install dependencies** (preferably in a virtual environment):
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. **Run the main script:**
-   ```sh
-   python main.py
-   ```
+## Features
 
-## Relevant Wikipedia links
-- [Hierarchical Risk Parity](https://en.wikipedia.org/wiki/Hierarchical_risk_parity)
-- [Mean-variance optimization](https://en.wikipedia.org/wiki/Modern_portfolio_theory)
-- [Sharpe ratio](https://en.wikipedia.org/wiki/Sharpe_ratio)
-- [Drawdown (economics)](https://en.wikipedia.org/wiki/Drawdown_(economics))
-- [Backtesting](https://en.wikipedia.org/wiki/Backtesting)
-- [yfinance](https://github.com/ranaroussi/yfinance)
+- Download historical asset prices with `yfinance`
+- Compute log returns, covariance, and correlation matrices
+- Build portfolio allocations with:
+  - Hierarchical Risk Parity (HRP)
+  - Equal Weight
+  - Mean-Variance (Markowitz-style inverse covariance)
+- Backtest each strategy and compute:
+  - Sharpe ratio
+  - Maximum drawdown
+  - Cumulative growth
+- Explore a clean Streamlit dashboard with:
+  - Custom ticker/date inputs
+  - Performance metrics cards
+  - Drawdown and cumulative return charts
+  - Weights table and correlation analysis
 
----
+## Project Structure
 
-This project is maintained by alwaysprince05 and is shared for educational and research purposes.
+```text
+HRP-Portfolio-Trading-System/
+├── backtest.py          # Backtesting and metrics
+├── data.py              # Data download + preprocessing
+├── hrp.py               # HRP allocation logic
+├── main.py              # Script-based run
+├── streamlit_app.py     # Interactive dashboard
+├── visualize.py         # Matplotlib visualization helpers
+├── requirements.txt
+└── README.md
+```
+
+## Setup
+
+### 1) Clone repository
+
+```bash
+git clone git@github.com:alwaysprince05/HRP-Portfolio-Trading-System.git
+cd HRP-Portfolio-Trading-System
+```
+
+### 2) Create virtual environment
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3) Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run Options
+
+### Option A: Streamlit dashboard (recommended)
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Then open the local URL shown in terminal (usually `http://localhost:8501`).
+
+### Option B: Python script mode
+
+```bash
+python main.py
+```
+
+This prints metrics in terminal and renders charts.
+
+## Dashboard Usage
+
+1. Enter comma-separated tickers in the sidebar  
+2. Select start/end dates  
+3. Choose allocation method  
+4. Click **Run**
+
+If Yahoo data is blocked due to network/proxy limits, enable **Use simulated data** and run again.
+
+## Methods Used
+
+- **HRP**: Clusters assets by correlation distance and allocates risk recursively
+- **Equal Weight**: Same weight to each selected asset
+- **Mean-Variance**: Inverse covariance approximation for efficient weighting
+
+## Notes
+
+- This project is for education and research purposes only.
+- It is not financial advice.
+- Real trading requires risk controls, transaction costs, slippage, and robust validation.
